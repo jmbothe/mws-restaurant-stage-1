@@ -59,7 +59,7 @@ nav h1 {
 
 nav h1 a {
   color: #fff;
-  font-size: 14pt;
+  font-size: 1.25rem;
   font-weight: 200;
   letter-spacing: 10px;
   text-transform: uppercase;
@@ -99,7 +99,7 @@ nav h1 a {
 }
 /* ====================== Map ====================== */
 #map {
-  height: 400px;
+  height: 60vh;
   width: 100%;
   background-color: #ccc;
 }
@@ -116,11 +116,11 @@ nav h1 a {
   color: white;
   font-size: 1rem;
   font-weight: normal;
-  line-height: 1;
   margin: 10px 10px 0;
 }
 .filter-options select {
   width: calc(50% - 20px);
+  height: 1.75rem;
   background-color: white;
   border: 1px solid #fff;
   font-size: .9rem;
@@ -131,7 +131,7 @@ nav h1 a {
 /* ====================== Restaurant Listing ====================== */
 #restaurants-list {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   background-color: #f3f3f3;
   list-style: outside none none;
   margin: 0;
@@ -140,19 +140,10 @@ nav h1 a {
 
 #restaurants-list li {
   background-color: #fff;
-  font-family: Arial,sans-serif;
   margin: .5rem 0;
-  padding: 1rem;
+  padding: .5rem;
   text-align: left;
   width: 100%;
-}
-
-#restaurants-list li:first-of-type {
-  margin-top: 1rem;
-}
-
-#restaurants-list li:last-of-type {
-  margin-bottom: 1rem;
 }
 
 #restaurants-list .restaurant-img {
@@ -164,7 +155,6 @@ nav h1 a {
 
 #restaurants-list li h1 {
   color: #f18200;
-  font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: 200;
   letter-spacing: 0;
@@ -284,4 +274,63 @@ nav h1 a {
 
 #restaurant-hours td {
   color: #666;
+}
+
+/* ====================== Media Queries ====================== */
+
+@media only screen and (min-width: 768px) {
+  nav h1 a {
+    font-size: 2rem;
+  }
+
+  .filter-options {
+    flex-wrap: none;
+  }
+
+  .filter-options h2 {
+    width: auto;
+    font-size: 1.2rem;
+  }
+
+  .filter-options select {
+    width: auto;
+    height: 1.85rem;
+    flex-grow: 1;
+    font-size: 1.2rem;
+  }
+
+  #restaurants-list {
+    padding: .25rem;
+  }
+
+  #restaurants-list li {
+    width: calc(50% - .5rem);
+    margin: .25rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  nav h1 a {
+    font-size: 3rem;
+  }
+
+  #restaurants-list li {
+    width: calc(25% - .5rem);
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  nav h1 a {
+    font-size: 3.5rem;
+  }
+
+  .filter-options {
+    padding-left: calc((100vw - 1366px) / 2);
+    padding-right: calc((100vw - 1366px) / 2);
+  }
+
+  #restaurants-list {
+    width: 1366px;
+    margin: 0 auto;
+  }
 }
