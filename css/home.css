@@ -1,0 +1,125 @@
+/* ====================== Restaurant Filtering ====================== */
+main > section:nth-of-type(2) > div:first-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #3397DB;
+}
+
+main > section:nth-of-type(2) > div:first-of-type h2 {
+  width: 100%;
+  color: white;
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 10px 10px 0;
+}
+main > section:nth-of-type(2) > div:first-of-type select {
+  width: calc(50% - 20px);
+  height: 1.75rem;
+  background-color: white;
+  border: 1px solid #fff;
+  font-size: .9rem;
+  letter-spacing: 0;
+  margin: 10px;
+}
+
+/* ====================== Restaurant Listing ====================== */
+#restaurants-list {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f3f3f3;
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+}
+
+#restaurants-list li {
+  background-color: #fff;
+  margin: .5rem 0;
+  padding: .5rem;
+  text-align: left;
+  width: 100%;
+}
+
+#restaurants-list .restaurant-img {
+  background-color: #ccc;
+  display: block;
+  margin: 0;
+  max-width: 100%;
+}
+
+#restaurants-list li h1 {
+  color: #f18200;
+  font-size: 14pt;
+  font-weight: 200;
+  letter-spacing: 0;
+  line-height: 1.3;
+  margin: 20px 0 10px;
+  text-transform: uppercase;
+}
+
+#restaurants-list p {
+  margin: 0;
+  font-size: 11pt;
+}
+
+#restaurants-list li a {
+  background-color: orange;
+  border-bottom: 3px solid #eee;
+  color: #fff;
+  display: inline-block;
+  font-size: 10pt;
+  margin: 15px 0 0;
+  padding: 8px 30px 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* ====================== Media Queries ====================== */
+
+@media only screen and (min-width: 768px) {
+
+  main > section:nth-of-type(2) > div:first-of-type {
+    flex-wrap: none;
+  }
+
+  main > section:nth-of-type(2) > div:first-of-type h2 {
+    width: auto;
+    font-size: 1.2rem;
+  }
+
+  main > section:nth-of-type(2) > div:first-of-type select {
+    width: auto;
+    height: 1.85rem;
+    flex-grow: 1;
+    font-size: 1.2rem;
+  }
+
+  #restaurants-list {
+    padding: .25rem;
+  }
+
+  #restaurants-list li {
+    width: calc(50% - .5rem);
+    margin: .25rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  #restaurants-list li {
+    width: calc(25% - .5rem);
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  main > section:nth-of-type(2) > div:first-of-type {
+    padding-left: calc((100vw - 1366px) / 2);
+    padding-right: calc((100vw - 1366px) / 2);
+  }
+
+  #restaurants-list {
+    width: 1366px;
+    margin: 0 auto;
+  }
+}

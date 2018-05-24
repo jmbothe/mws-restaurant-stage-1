@@ -1,0 +1,166 @@
+main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+#breadcrumb {
+  padding: 1rem;
+  list-style: none;
+  background-color: #eee;
+  font-size: 17px;
+  margin: 0;
+  width: 100%;
+}
+
+/* Display list items side by side */
+#breadcrumb li {
+  display: inline;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+#breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+#breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+#breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+main > section:first-of-type {
+  height: 60vh;
+}
+
+#map {
+  height: 100%;
+}
+
+#restaurant-name {
+  color: #f18200;
+  font-size: 1.6rem;
+  font-weight: 200;
+  letter-spacing: 0;
+  margin: 1rem 0 2rem;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+#restaurant-img {
+	width: 100%;
+}
+
+#restaurant-address {
+  margin: 10px 0px;
+}
+
+#restaurant-cuisine {
+  background-color: #333;
+  color: #ddd;
+  font-weight: 300;
+  letter-spacing: 10px;
+  margin: 0 0 1.25rem;
+  padding: 2px 0;
+  text-align: center;
+  text-transform: uppercase;
+	width: 100%;
+}
+
+#restaurant-container, #reviews-container {
+  border-bottom: 1px solid #d9d9d9;
+  border-top: 1px solid #fff;
+  padding: 1rem;
+  width: 100%;
+}
+
+#reviews-container h2 {
+  color: #f58500;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+#reviews-list {
+  margin: 0;
+  padding: 0;
+}
+
+#reviews-list li {
+  background-color: #fff;
+  border: 2px solid #f3f3f3;
+  display: block;
+  list-style-type: none;
+  margin: 0 0 2rem;
+  overflow: hidden;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+}
+
+#reviews-list li p {
+  margin: 0 0 0.5rem;
+}
+
+#restaurant-hours td {
+  color: #666;
+}
+
+@media only screen and (min-width: 1024px) {
+  main {
+    margin-top: 18vh;
+    padding-bottom: 7vh;
+  }
+  
+  header {
+    position: fixed;
+    top: 0;
+    height: 18vh;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  header nav {
+    height: 12vh;
+  }
+
+  #breadcrumb {
+    min-height: 6vh;
+  }
+
+  main > section:first-of-type {
+    height: 88vh;
+    position: fixed;
+    right: 0;
+    top: 12vh;
+    width: 50%;
+    z-index: 1001;
+  }
+  
+  footer {
+    bottom: 0;
+    position: absolute;
+    width: 50%;
+  }
+
+  #restaurant-container, #reviews-container {
+    width: 50%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #restaurant-name,
+  #restaurant-hours,
+  #restaurant-address,
+  #reviews-container h2 {
+    padding-left: 1rem;
+  }
+}
