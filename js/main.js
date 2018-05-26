@@ -140,6 +140,12 @@ createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
   
   const picture = document.createElement('picture');
+  
+  const webpSource = document.createElement('source');
+  webpSource.type = 'image/webp';
+  webpSource.srcset = `${imageUrl}.webp`
+  picture.append(webpSource);
+
   [
     {
       media: '(max-width: 320px)',

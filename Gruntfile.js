@@ -1,6 +1,22 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+
+    cwebp: {
+      dynamic: {
+        options: {
+          q: 80
+        },
+        files: [{
+          expand: true,
+          cwd: 'img_src/', 
+          src: ['*.{png,jpg,gif}'],
+          dest: 'img/'
+        }]
+      },
+    },
+      
+
     responsive_images: {
       dev: {
         options: {
@@ -12,11 +28,11 @@ module.exports = function(grunt) {
           }, {
             name: "medium",
             width: 640,
-            quality: 100
+            quality: 80
           }, {
            name: "large",
            width: 800,
-           quality: 100
+           quality: 80
           }]
         },
 
@@ -45,8 +61,9 @@ module.exports = function(grunt) {
 
   });
   
+  grunt.loadNpmTasks('grunt-cwebp');
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-mkdir');
-  grunt.registerTask('default', ['clean', 'mkdir', 'responsive_images']);
+  grunt.registerTask('default', ['clean', 'mkdir', 'cwebp', 'responsive_images']);
 };

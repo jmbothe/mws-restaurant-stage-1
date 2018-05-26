@@ -56,7 +56,14 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
   
   const imageUrl = DBHelper.imageUrlForRestaurant(restaurant).split('.')[0];
+
   const picture = document.getElementById('restaurant-img');
+  
+  const webpSource = document.createElement('source');
+  webpSource.type = 'image/webp';
+  webpSource.srcset = `${imageUrl}.webp`
+  picture.append(webpSource);
+
   [
     {
       media: '(max-width: 375px)',
