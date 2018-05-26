@@ -45,7 +45,7 @@ main > section:nth-of-type(2) > div:first-of-type select {
   background-color: #ccc;
   display: block;
   margin: 0;
-  max-width: 100%;
+  width: 100%;
 }
 
 #restaurants-list li h1 {
