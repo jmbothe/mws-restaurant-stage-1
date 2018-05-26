@@ -170,6 +170,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.src = `${imageUrl}-large.jpg`;
   image.className = 'restaurant-img';
+  image.alt = restaurant.name;
 
   picture.append(image)
   li.append(picture);
