@@ -32,6 +32,16 @@ a img {
 	border: none 0px #fff;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+}
+
+.skip-link:focus {
+  top: 8vh;
+}
+
 main {
   background-color: #f3f3f3;
 }
