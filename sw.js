@@ -4,7 +4,6 @@ const urls = [
   '/css/main.css',
   '/css/home.css',
   '/css/restaurant.css',
-  '/data/restaurants.json',
   '/js/dbhelper.js',
   '/js/main.js',
   '/js/restaurant_info.js'
