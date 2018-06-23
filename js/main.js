@@ -147,7 +147,8 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  * Create restaurant HTML.
  */
 createRestaurantHTML = (restaurant) => {
-  const imageUrl = DBHelper.imageUrlForRestaurant(restaurant).split('.')[0];
+  let imageUrl = DBHelper.imageUrlForRestaurant(restaurant).split('.')[0];
+  imageUrl = imageUrl == '/img/undefined' ? '/img/none' : imageUrl;
   const li = document.createElement('li');
   
   const picture = document.createElement('picture');
