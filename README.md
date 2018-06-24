@@ -1,28 +1,19 @@
-# Mobile Web Specialist Certification Course
----
-#### _Three Stage Course Material Project - Restaurant Reviews_
+# Restaurant Reviews App
 
-## Project Overview: Stage 1
+## Description
 
-For the **Restaurant Reviews** projects, you will incrementally convert a static webpage to a mobile-ready web application. In **Stage One**, you will take a static design that lacks accessibility and convert the design to be responsive on different sized displays and accessible for screen reader use. You will also add a service worker to begin the process of creating a seamless offline experience for your users.
+The Restaurants Reviews App is a demonstration of mobile-and-offline first web development practices, built as part of a training course with Google and Udacity. The homepage of the app provides a filterable list of restaurants in the New York area. The details pages of each restaurant provides a description and reviews of that restaurant.
 
-### Specification
+## Installation
 
-You have been provided the code for a restaurant reviews website. The code has a lot of issues. It’s barely usable on a desktop browser, much less a mobile device. It also doesn’t include any standard accessibility features, and it doesn’t work offline at all. Your job is to update the code to resolve these issues while still maintaining the included functionality. 
+To get the code for this project up and running to test it out, follow these steps:
 
-### What do I do from here?
+* First, make sure you have all of the project's dependencies installed. Development on this codebase requires Node.js, a global installation of the Grunt CLI (installed AFTER you install Node.js), and GraphicsMagick, and Python 3.
+* Once you have all the dependencies installed, fork and clone this repository onto your local machine.
+* In a command line terminal, from the main project directory, run `npm install`.
+* Then, in the same terminal, run `python3 -m http.server 8000` to start the server. You can now open a browser and test the app by navigating to `http://localhost:8080`, but you'll notice that the app isnt quite working yet. That's because there are just a few more steps.
+* You'll also need another repo, which is an API that provides the data that this app uses. Go ahead and clone this repo too, in a separate folder.
+* Follow all of the instructions in this OTHER repo's `readme` file to get its server up and running, then go visit `http://localhost:8080` in your browser. Everything should be good to go!
 
-1. In this folder, start up a simple HTTP server to serve up the site files on your local computer. Python has some simple tools to do this, and you don't even need to know Python. For most people, it's already installed on your computer. 
-
-In a terminal, check the version of Python you have: `python -V`. If you have Python 2.x, spin up the server with `python -m SimpleHTTPServer 8000` (or some other port, if port 8000 is already in use.) For Python 3.x, you can use `python3 -m http.server 8000`. If you don't have Python installed, navigate to Python's [website](https://www.python.org/) to download and install the software.
-
-2. With your server running, visit the site: `http://localhost:8000`, and look around for a bit to see what the current experience looks like.
-3. Explore the provided code, and make start making a plan to implement the required features in three areas: responsive design, accessibility and offline use.
-4. Write code to implement the updates to get this site on its way to being a mobile-ready website.
-
-### Note about ES6
-
-Most of the code in this project has been written to the ES6 JavaScript specification for compatibility with modern web browsers and future proofing JavaScript code. As much as possible, try to maintain use of ES6 in any additional JavaScript you write. 
-
-
+## Demoing the app
 
