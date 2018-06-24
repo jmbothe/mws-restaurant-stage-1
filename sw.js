@@ -44,10 +44,7 @@ self.addEventListener('fetch', event => {
           }
         });
     }))
-  // } else if (!event.request.url.startsWith('http://localhost')) {
-  //   event.respondWith(fetch(event.request));
   } else {
-    
     event.respondWith(
       caches.open('assets')
         .then(cache => cache.match(event.request)
@@ -56,7 +53,7 @@ self.addEventListener('fetch', event => {
               return hit;
             } else {
               cache.add(event.request).catch(err => console.log(err))
-              return fetch(event.request);
+                return fetch(event.request).catch(err => console.log(err))
             }
           })
         )
