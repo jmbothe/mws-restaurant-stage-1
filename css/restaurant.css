@@ -4,6 +4,12 @@ main {
   flex-wrap: wrap;
 }
 
+nav {
+  background-color: #eee;
+  margin: 0;
+  width: 100%;
+}
+
 #breadcrumb {
   padding: 1rem;
   list-style: none;
@@ -127,11 +133,11 @@ main > section:first-of-type {
     z-index: 1000;
   }
 
-  header nav {
+  .main-heading {
     height: 12vh;
   }
 
-  #breadcrumb {
+  nav {
     min-height: 6vh;
   }
 
