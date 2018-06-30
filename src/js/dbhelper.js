@@ -1,3 +1,5 @@
+import L from 'leaflet';
+
 /**
  * Common database helper functions.
  */
@@ -164,7 +166,9 @@ class DBHelper {
     alt: restaurant.name,
     url: DBHelper.urlForRestaurant(restaurant)
     })
-    marker.addTo(newMap);
+    marker.addTo(map);
     return marker;
   }
 }
+
+export default DBHelper;

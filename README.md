@@ -8,12 +8,11 @@ The Restaurants Reviews App is a demonstration of mobile-and-offline first web d
 
 To get the code for this project up and running to test it out, follow these steps:
 
-* First, make sure you have all of the project's dependencies installed. Development on this codebase requires [Node.js](https://nodejs.org/), a global installation of the [Grunt CLI](https://github.com/gruntjs/grunt-cli) (installed AFTER you install Node.js), [GraphicsMagick](http://www.graphicsmagick.org/), and [Python 3](https://www.python.org/).
-* Once you have all the dependencies installed, fork and clone this repository onto your local machine.
+* First, make sure you have all of the project's dependencies installed. Development on this codebase requires [Node.js](https://nodejs.org/).
+* Once you have Node.js installed, fork and clone this repository onto your local machine.
 * In a command line terminal, from the main project directory, run `npm install`.
-* To populate a directory with responsive images needed for the app, run `grunt` in the same command line.
-* You'll also need another repo, which is an API that provides the data that this app uses. Go ahead and clone this repo too, in a separate folder. Follow all of the instructions in this OTHER repo's `readme` file to get its server up and running.
-* Then, in the terminal for THIS repo, run `python3 -m http.server 8000` to start the server. You can now open a browser and test the app by navigating to `http://localhost:8080`. Everything should be good to go!
+* You'll also need another repo, which is an API that provides the data that this app uses. Go ahead and clone this repo too, in a separate folder. Follow all of the instructions in this OTHER repo's `readme` file to install its dependencies, and get its server up and running.
+* Then, in the terminal for THIS repo, run `npm start` to start the webpack-dev-server. You can now open a browser and test the app by navigating to `http://localhost:3000`. Everything should be good to go!
 
 ## Demoing the app
 
@@ -23,7 +22,6 @@ To get the code for this project up and running to test it out, follow these ste
 * Note that the app is fully mobile responsive, and also works offline. If you lose your internet connection, any page you have alredy visited will still be available to view.
 
 ## License
-
 
 The MIT License
 
