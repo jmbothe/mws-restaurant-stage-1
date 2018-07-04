@@ -13,6 +13,7 @@ let newMap;
  */
 document.addEventListener('DOMContentLoaded', () => {
   initMap();
+  fetchReviewsFromURL();
 });
 
 /**
@@ -63,6 +64,22 @@ const fetchRestaurantFromURL = (callback) => {
   }
 };
 
+const fetchReviewsFromURL = () => {
+  const id = getParameterByName('id');
+  if (!id) { // no id found in URL
+    const error = 'No restaurant id in URL';
+    callback(error, null);
+  } else {
+    DBHelper.fetchRestaurantReviews(id, (error, reviews) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
+      fillReviewsHTML(reviews);
+    });
+  }
+};
+
 /**
  * Create restaurant HTML and add it to the webpage
  */
@@ -74,7 +91,6 @@ const fillRestaurantHTML = (restaurant) => {
   address.innerHTML = restaurant.address;
 
   let imageUrl = DBHelper.imageUrlForRestaurant(restaurant).split('.')[0];
-  console.log(imageUrl);
   imageUrl = imageUrl == '/img/undefined' ? '/img/none' : imageUrl;
 
   const picture = document.getElementById('restaurant-img');
@@ -119,8 +135,6 @@ const fillRestaurantHTML = (restaurant) => {
   if (restaurant.operating_hours) {
     fillRestaurantHoursHTML(restaurant.operating_hours);
   }
-  // fill reviews
-  fillReviewsHTML(restaurant.reviews);
 };
 
 /**
@@ -175,7 +189,7 @@ const createReviewHTML = (review) => {
   li.appendChild(name);
 
   const date = document.createElement('p');
-  date.innerHTML = review.date;
+  date.innerHTML = new Date(review.createdAt).toDateString();
   li.appendChild(date);
 
   const rating = document.createElement('p');
