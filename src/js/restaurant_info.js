@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import DBHelper from './dbhelper.js';
+import DBHelper from './dbhelper';
 import '../css/leaflet.css';
 import '../css/main.css';
 import '../css/restaurant.css';
@@ -66,18 +66,13 @@ const fetchRestaurantFromURL = (callback) => {
 
 const fetchReviewsFromURL = () => {
   const id = getParameterByName('id');
-  if (!id) { // no id found in URL
-    const error = 'No restaurant id in URL';
-    callback(error, null);
-  } else {
-    DBHelper.fetchRestaurantReviews(id, (error, reviews) => {
-      if (error) {
-        console.error(error);
-        return;
-      }
-      fillReviewsHTML(reviews);
-    });
-  }
+  DBHelper.fetchRestaurantReviews(id, (error, reviews) => {
+    if (error) {
+      console.error(error);
+      return;
+    }
+    fillReviewsHTML(reviews);
+  });
 };
 
 /**
@@ -91,7 +86,7 @@ const fillRestaurantHTML = (restaurant) => {
   address.innerHTML = restaurant.address;
 
   let imageUrl = DBHelper.imageUrlForRestaurant(restaurant).split('.')[0];
-  imageUrl = imageUrl == '/img/undefined' ? '/img/none' : imageUrl;
+  imageUrl = imageUrl === '/img/undefined' ? '/img/none' : imageUrl;
 
   const picture = document.getElementById('restaurant-img');
 
@@ -142,7 +137,7 @@ const fillRestaurantHTML = (restaurant) => {
  */
 const fillRestaurantHoursHTML = (operatingHours) => {
   const hours = document.getElementById('restaurant-hours');
-  for (const key in operatingHours) {
+  Object.keys(operatingHours).forEach((key) => {
     const row = document.createElement('tr');
 
     const day = document.createElement('td');
@@ -154,7 +149,7 @@ const fillRestaurantHoursHTML = (operatingHours) => {
     row.appendChild(time);
 
     hours.appendChild(row);
-  }
+  });
 };
 
 /**
@@ -218,11 +213,11 @@ const fillBreadcrumb = (restaurant) => {
  * Get a parameter by name from page URL.
  */
 const getParameterByName = (name, url) => {
-  if (!url) {url = window.location.href;}
+  if (!url) { url = window.location.href; }
   name = name.replace(/[\[\]]/g, '\\$&');
-  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
-    results = regex.exec(url);
-  if (!results) {return null;}
-  if (!results[2]) {return '';}
+  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
+  const results = regex.exec(url);
+  if (!results) { return null; }
+  if (!results[2]) { return ''; }
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
