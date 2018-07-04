@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   initMap();
   fetchNeighborhoods();
   fetchCuisines();
+  document.getElementById('neighborhoods-select').addEventListener('change', e => updateRestaurants());
+  document.getElementById('cuisines-select').addEventListener('change', e => updateRestaurants());
 });
 
 /**
@@ -117,7 +119,7 @@ const updateRestaurants = () => {
     if (error) { // Got an error!
       console.error(error);
     } else {
-      resetRestaurants(restaurants);
+      resetRestaurants();
       fillRestaurantsHTML(restaurants);
     }
   });
@@ -126,9 +128,8 @@ const updateRestaurants = () => {
 /**
  * Clear current restaurants, their HTML and remove their map markers.
  */
-const resetRestaurants = (restaurants) => {
+const resetRestaurants = () => {
   // Remove all restaurants
-  restaurants = [];
   const ul = document.getElementById('restaurants-list');
   ul.innerHTML = '';
 
@@ -137,7 +138,6 @@ const resetRestaurants = (restaurants) => {
     markers.forEach(marker => marker.remove());
   }
   markers = [];
-  restaurants = restaurants;
 };
 
 /**

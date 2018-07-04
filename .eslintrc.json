@@ -7,7 +7,6 @@
     },
     "rules": {
       "linebreak-style": "off",
-      "no-use-before-define": "off",
       "no-param-reassign": "off",
       "eqeqeq": "off"
     }
