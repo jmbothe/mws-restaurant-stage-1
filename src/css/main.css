@@ -32,6 +32,11 @@ a img {
 	border: none 0px #fff;
 }
 
+select {
+  height: 1.75rem;
+  background-color: white;
+}
+
 .skip-link {
   position: absolute;
   top: -40px;

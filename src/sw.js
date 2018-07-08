@@ -26,7 +26,7 @@ self.addEventListener('fetch', (event) => {
   // handle PUT toggle favorite restaurant request
   } else if (event.request.url.includes('is_favorite') && event.request.method === 'PUT') {
     event.respondWith(
-      fetch(event.request, { method: 'PUT' })
+      fetch(event.request)
         .then(res => res.json())
         .then(body => dbPromise.then((db) => {
           const tx = db.transaction('restaurants', 'readwrite')
