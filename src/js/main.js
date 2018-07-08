@@ -22,8 +22,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   initMap();
   fetchNeighborhoods();
   fetchCuisines();
-  document.getElementById('neighborhoods-select').addEventListener('change', e => updateRestaurants());
-  document.getElementById('cuisines-select').addEventListener('change', e => updateRestaurants());
+  document.getElementById('neighborhoods-select').addEventListener('change', () => updateRestaurants());
+  document.getElementById('cuisines-select').addEventListener('change', () => updateRestaurants());
+  document.getElementById('restaurants-list').addEventListener('click', (e) => {
+    if (e.target.tagName === 'INPUT') {
+      DBHelper.toggleRestaurantFavorite(e.target.id);
+    }
+  });
 });
 
 /**
@@ -217,6 +222,27 @@ const createRestaurantHTML = (restaurant) => {
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more);
+
+  const favLabel = document.createElement('label');
+  favLabel.for = restaurant.id;
+  favLabel.className = 'fav-label';
+
+  const favInput = document.createElement('input');
+  favInput.id = restaurant.id;
+  favInput.type = 'checkbox';
+  favInput.checked = restaurant.is_favorite === 'true';
+
+  const icon1 = document.createElement('i');
+  icon1.className = 'heart unchecked';
+
+  const icon2 = document.createElement('i');
+  icon2.className = 'heart checked';
+
+  favLabel.append(favInput);
+  favLabel.append(icon1);
+  favLabel.append(icon2);
+
+  li.append(favLabel);
 
   return li;
 };
