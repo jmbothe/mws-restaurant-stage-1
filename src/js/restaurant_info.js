@@ -14,6 +14,20 @@ let newMap;
 document.addEventListener('DOMContentLoaded', () => {
   initMap();
   fetchReviewsFromURL();
+  document.getElementById('new-review').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const body = {
+      restaurant_id: getParameterByName('id'),
+      name: e.target.elements.name.value,
+      rating: e.target.elements.rating.value,
+      comments: e.target.elements.comments.value,
+    };
+
+    DBHelper.postNewRestaurantReview(body).then(() => {
+      fetchReviewsFromURL();
+    });
+  });
 });
 
 /**
@@ -64,12 +78,14 @@ const fetchRestaurantFromURL = (callback) => {
   }
 };
 
+/**
+ * Get restaurant reviews from curretn url
+ */
 const fetchReviewsFromURL = () => {
   const id = getParameterByName('id');
   DBHelper.fetchRestaurantReviews(id, (error, reviews) => {
     if (error) {
       console.error(error);
-      return;
     }
     fillReviewsHTML(reviews);
   });
@@ -156,22 +172,18 @@ const fillRestaurantHoursHTML = (operatingHours) => {
  * Create all reviews HTML and add them to the webpage.
  */
 const fillReviewsHTML = (reviews) => {
-  const container = document.getElementById('reviews-container');
-  const title = document.createElement('h2');
-  title.innerHTML = 'Reviews';
-  container.appendChild(title);
+  const ul = document.getElementById('reviews-list');
+  ul.innerHTML = '';
 
   if (!reviews) {
-    const noReviews = document.createElement('p');
-    noReviews.innerHTML = 'No reviews yet!';
-    container.appendChild(noReviews);
-    return;
+    const noReviews = document.createElement('li');
+    noReviews.innerHTML = 'No reviews available right now. Try again later.';
+    ul.appendChild(noReviews);
+  } else {
+    reviews.forEach((review) => {
+      ul.appendChild(createReviewHTML(review));
+    });
   }
-  const ul = document.getElementById('reviews-list');
-  reviews.forEach((review) => {
-    ul.appendChild(createReviewHTML(review));
-  });
-  container.appendChild(ul);
 };
 
 /**

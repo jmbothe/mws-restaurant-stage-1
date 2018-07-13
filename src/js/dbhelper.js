@@ -31,12 +31,32 @@ class DBHelper {
     xhr.send();
   }
 
+  /**
+   * fetch restaurant reviews by ID
+   */
   static fetchRestaurantReviews(id, callback) {
     return fetch(`http://localhost:1337/reviews/?restaurant_id=${id}`)
       .then(res => res.json())
       .then(body => callback(null, body))
       .catch(err => callback(err, null));
   }
+
+  /**
+   * POST a new restaurant review
+   */
+  static postNewRestaurantReview(body) {
+    return fetch('http://localhost:1337/reviews/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then(res => res.json())
+      .then(body => console.log(body))
+      .catch(err => console.log(err));
+  }
+
 
   /**
    * Fetch a restaurant by its ID.
