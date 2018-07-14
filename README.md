@@ -21,6 +21,7 @@ To get the code for this project up and running to test it out, follow these ste
 * When the build process is complete, run `cd build`, to change into the `build` directory.
 * From the `build` directory, run `python GzipServer.py`. This is neccessary for optimum performance, since all text assets are served in gzip form.
 * Navigate to `localhost:8000` to visit the app.
+* Free and open soure Gzip Python server comes from [https://github.com/ksmith97/GzipSimpleHTTPServer](https://github.com/ksmith97/GzipSimpleHTTPServer)
 
 ## Demoing the app
 
