@@ -4,6 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const webpack = require('webpack');
 
 const BUILD_DIR = path.resolve(__dirname, 'build');
@@ -22,14 +25,22 @@ module.exports = {
 
   optimization: {
     splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-        },
-      },
+      chunks: 'all',
+      // cacheGroups: {
+      //   commons: {
+      //     test: /[\\/]node_modules[\\/]/,
+      //     name: 'vendor',
+      //     chunks: 'all',
+      //   },
+      // },
     },
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+      }),
+      new OptimizeCssAssetsPlugin({}),
+    ],
   },
 
   devServer: {
@@ -78,17 +89,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       excludeChunks: ['sw', 'restaurant_info'],
-      // minify: {
-      //   collapseWhiteSpace: true,
-      // },
     }),
     new HtmlWebpackPlugin({
       template: './src/restaurant.html',
       filename: 'restaurant.html',
       excludeChunks: ['sw', 'main'],
-      // minify: {
-      //   collapseWhiteSpace: true,
-      // },
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -97,6 +102,7 @@ module.exports = {
       { from: `${APP_DIR}/img`, to: `${BUILD_DIR}/img` },
       { from: `${APP_DIR}/icons`, to: `${BUILD_DIR}/icons` },
       { from: `${APP_DIR}/manifest.json`, to: `${BUILD_DIR}/manifest.json` },
+      { from: `${APP_DIR}/GzipServer.py`, to: `${BUILD_DIR}/GzipServer.py` },
     ]),
     new OfflinePlugin({
       ServiceWorker: {
@@ -116,6 +122,13 @@ module.exports = {
         },
         AppCache: false,
       },
+    }),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
   ],
 };

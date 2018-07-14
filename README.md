@@ -18,7 +18,9 @@ To get the code for this project up and running to test it out, follow these ste
 
 * To get the most accurate results from Google Chrome's lighthouse audits, please run the audits on a build of the app, rather than in development on the webpack dev server.
 * To do so, from the project's root directory, run `npm run build`.
-* When the build process is complete, run `cd build`, then start a server of your choice. I recommend running `python3 -m http.server 3000`, which allows you to visit the page at `localhost:3000`.
+* When the build process is complete, run `cd build`, to change into the `build` directory.
+* From the `build` directory, run `python GzipServer.py`. This is neccessary for optimum performance, since all text assets are served in gzip form.
+* Navigate to `localhost:8000` to visit the app.
 
 ## Demoing the app
 
