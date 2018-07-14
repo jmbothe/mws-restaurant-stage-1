@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+window.addEventListener('online', () => navigator.serviceWorker.controller.postMessage('online'));
+
 /**
  * Initialize leaflet map
  */

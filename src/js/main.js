@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   });
 });
 
+window.addEventListener('online', () => navigator.serviceWorker.controller.postMessage('online'));
+
 /**
  * Fetch all neighborhoods and set their HTML.
  */

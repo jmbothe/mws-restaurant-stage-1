@@ -52,8 +52,6 @@ class DBHelper {
       },
       body: JSON.stringify(body),
     })
-      .then(res => res.json())
-      .then(body => console.log(body))
       .catch(err => console.log(err));
   }
 
