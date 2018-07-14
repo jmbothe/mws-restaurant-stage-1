@@ -24,9 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
       comments: e.target.elements.comments.value,
     };
 
-    DBHelper.postNewRestaurantReview(body).then(() => {
+    DBHelper.postNewRestaurantReview(body)
+      .then(response => response.json())
+      .then((body) => {
+        e.target.reset();
+        if (body.message === 'POST stored offline') {
+          alert('App is offline. Review stored locally, to be sent when back online. Thanks!');
+        } else {
+          alert('Review submitted! Thanks :)');
+          fetchReviewsFromURL();
+        }
+      });
+  });
+
+  const channel = new BroadcastChannel('sw-messages');
+  channel.addEventListener('message', (event) => {
+    if (event.data === 'Cached POSTs completed') {
       fetchReviewsFromURL();
-    });
+    }
   });
 });
 

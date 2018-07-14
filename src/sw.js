@@ -65,6 +65,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request)
         .catch(err => dbPromise.then((db) => {
+          console.log(err);
           return errRequest.json().then((body) => {
             const store = db.transaction('reviewPosts', 'readwrite')
               .objectStore('reviewPosts');
@@ -90,6 +91,9 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
+/**
+ * POST reviews when back online
+ */
 self.addEventListener('message', (e) => {
   if (e.data === 'online') {
     dbPromise.then((db) => {
@@ -107,6 +111,8 @@ self.addEventListener('message', (e) => {
 
             Promise.all(postsArray).then(() => {
               db.transaction('reviewPosts', 'readwrite').objectStore('reviewPosts').clear();
+              const channel = new BroadcastChannel('sw-messages');
+              channel.postMessage('Cached POSTs completed');
             })
               .catch(err => console.log(err));
           }
