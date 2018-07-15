@@ -51,8 +51,7 @@ class DBHelper {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
-    })
-      .catch(err => console.log(err));
+    });
   }
 
 
@@ -193,15 +192,10 @@ class DBHelper {
     return marker;
   }
 
-  static toggleRestaurantFavorite(id) {
-    fetch(`http://localhost:1337/restaurants/${id}`)
-      .then(res => res.json())
-      .then((restaurant) => {
-        const bool = restaurant.is_favorite === 'true';
-        return fetch(`http://localhost:1337/restaurants/${id}/?is_favorite=${!bool}`, {
-          method: 'PUT',
-        });
-      });
+  static toggleRestaurantFavorite(id, status) {
+    fetch(`http://localhost:1337/restaurants/${id}/?is_favorite=${status}`, {
+      method: 'PUT',
+    })
   }
 }
 

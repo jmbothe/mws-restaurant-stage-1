@@ -26,7 +26,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('cuisines-select').addEventListener('change', () => updateRestaurants());
   document.getElementById('restaurants-list').addEventListener('click', (e) => {
     if (e.target.tagName === 'INPUT') {
-      DBHelper.toggleRestaurantFavorite(e.target.id);
+      DBHelper.toggleRestaurantFavorite(e.target.id, e.target.checked);
+    }
+  });
+
+  const channel = new BroadcastChannel('sw-messages');
+  channel.addEventListener('message', (event) => {
+    if (event.data === 'Cached PUTs completed') {
+      updateRestaurants();
     }
   });
 });
@@ -232,7 +239,7 @@ const createRestaurantHTML = (restaurant) => {
   const favInput = document.createElement('input');
   favInput.id = restaurant.id;
   favInput.type = 'checkbox';
-  favInput.checked = restaurant.is_favorite === 'true';
+  favInput.checked = `${restaurant.is_favorite}` === 'true' ;
 
   const icon1 = document.createElement('i');
   icon1.className = 'heart unchecked';
